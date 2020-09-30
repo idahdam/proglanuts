@@ -23,9 +23,10 @@ void setMainMatrixElements();
 void printWholeMainGame();
 void pressStartOrEscape();
 bool checkIfAbleToMove(int X, int Y, char input);
+void moveTo(bool movement, int move);
 
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA];
-int globalX = 3, globalY = 3;
+int globalX = 3, globalY = 3, moveCounter = 0;
 
 void startFunc(){
     randomizeElements();
@@ -76,7 +77,7 @@ void setMainMatrixElements(){
 }
 
 void printWholeMainGame(){
-    int i, j, move = 0;
+    int i, j;
     char movement;
     bool gameLoop = true;
     pressStartOrEscape();
@@ -88,9 +89,6 @@ void printWholeMainGame(){
                 if(j == 0){
                     printf("|| %-5d||", arrayMatrix[i][j]);
                 }
-                // else if(j == KOLOM - 1){
-                //     printf(" %-5d||", arrayMatrix[i][j]);
-                // }
                 else{
                     printf("  %-5d||", arrayMatrix[i][j]);
                 }
@@ -104,7 +102,7 @@ void printWholeMainGame(){
             printf("\n");
         }
 
-        printf("Move You Take:  %d\n", move);
+        printf("Move You Take:  %d\n", moveCounter);
         printf("Where would you like to move? up/left/right/down: ");
         scanf("%c", &movement);
         switch (movement){
@@ -112,22 +110,19 @@ void printWholeMainGame(){
             /* code */
             printf("You pressed up.");
             Sleep(1000);
-            move++;
+            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'a':
             printf("You pressed left.");
             Sleep(1000);
-            move++;
             break;
         case 's':
             printf("You pressed down.");
             Sleep(1000);
-            move++;
             break;
         case 'd':
             printf("You pressed right.");
             Sleep(1000);
-            move++;
             break;
         case 'k':
             gameLoop = false;
@@ -143,6 +138,7 @@ void printWholeMainGame(){
 }
 
 void pressStartOrEscape(){
+    system("cls");
     int i, j;
     printf("=====================================\n");
 
@@ -166,23 +162,40 @@ void pressStartOrEscape(){
 }
 
 bool checkIfAbleToMove(int X, int Y, char input){
+    int moveToWhere;
     // checking corners
-    // bottom right
+    // last row (Y =)
     if(Y == 3){
         if(X == 3){
             if(input == 'd' || input == 's'){
+                return false;
+            }
+            else{
+                if(input == 'w'){
+                    return true;
+                }
+                else if(input == 'a'){
+                    return true;
+                }
+            }
+
+        }
+        else if(X == 1 || X == 2){
+            if(input == 's'){
                 printf("You can't move.");
                 return false;
             }
             else{
                 if(input == 'w'){
-                    //swap
+                    return true;
+                }
+                else if(input == 'd'){
+                    return true;
                 }
                 else if(input == 'a'){
-                    //swap
+                    return true;
                 }
             }
-
         }
         else if(X == 0){
             if(input == 'a' || input == 's'){
@@ -191,12 +204,157 @@ bool checkIfAbleToMove(int X, int Y, char input){
             }
             else{
                 if(input == 'w'){
-                    //swap
+                    return true;
                 }
                 else if(input == 'd'){
-                    //swap
+                    return true;
                 }
             }
         }
     }
+    else if(Y == 2 || Y == 1){
+        if(X == 3){
+            if(input == 'd'){
+                return false;
+            }
+            else{
+                if(input == 'w'){
+                    return true;
+                }
+                else if(input == 'a'){
+                    return true;
+                }
+                else if(input == 's'){
+                    return true;
+                }
+            }
+
+        }
+        else if(X == 1 || X == 2){
+            if(input == 'a' || input == 's' || input == 'w' || input == 'd'){
+                printf("You can't move.");
+                return false;
+            }
+        }
+        else if(X == 0){
+            if(input == 'a'){
+                printf("You can't move.");
+                return false;
+            }
+            else{
+                if(input == 'w'){
+                    return true;
+                }
+                else if(input == 'd'){
+                    return true;
+                }
+                else if(input == 's'){
+                    return true;
+                }
+            }
+        }
+    }
+    else if(Y == 0){
+        if(X == 3){
+            if(input == 'd' || input == 'w'){
+                return false;
+            }
+            else{
+                if(input == 'a'){
+                    return true;
+                }
+                else if(input == 's'){
+                    return true;
+                }
+            }
+
+        }
+        else if(X == 1 || X == 2){
+            if(input == 'w'){
+                printf("You can't move.");
+                return false;
+            }
+            else if(input == 'a' || input == 's' || input == 'd'){
+                return true;
+            }
+        }
+        else if(X == 0){
+            if(input == 'a' || input == 'w'){
+                printf("You can't move.");
+                return false;
+            }
+            else{
+                if(input == 'd'){
+                    return true;
+                }
+                else if(input == 's'){
+                    return true;
+                }
+            }
+        }
+    }
+}
+
+void moveTo(bool movement, int move){
+    int a, b, temp;
+    if(movement == false){
+        printf("You can't move.");
+    }
+    else{
+        if(move == 'w'){
+            a = arrayMatrix[globalY][globalX];
+            b = arrayMatrix[globalY-1][globalX];
+
+            temp = a;
+            a = b;
+            b = temp;
+
+            arrayMatrix[globalY][globalX] = a;
+            arrayMatrix[globalY-1][globalX] = b;
+
+            globalY -= 1;
+        }
+        else if (move == 'a'){
+            a = arrayMatrix[globalY][globalX];
+            b = arrayMatrix[globalY][globalX-1];
+
+            temp = a;
+            a = b;
+            b = temp;
+
+            arrayMatrix[globalY][globalX] = a;
+            arrayMatrix[globalY][globalX-1] = b;
+
+            globalX-=1;
+        }
+        else if (move == 's'){
+            a = arrayMatrix[globalY][globalX];
+            b = arrayMatrix[globalY+1][globalX];
+
+            temp = a;
+            a = b;
+            b = temp;
+
+            arrayMatrix[globalY][globalX] = a;
+            arrayMatrix[globalY-1][globalX] = b;  
+
+            globalY+=1;          
+        }
+        else if (move == 'd'){
+            a = arrayMatrix[globalY][globalX];
+            b = arrayMatrix[globalY][globalX+1];
+
+            temp = a;
+            a = b;
+            b = temp;
+
+            arrayMatrix[globalY][globalX] = a;
+            arrayMatrix[globalY-1][globalX] = b;   
+
+            globalX+=1;         
+        }
+        printf("You've succesfully moved.");
+        moveCounter++;
+    }
+
 }
