@@ -24,9 +24,12 @@ void printWholeMainGame();
 void pressStartOrEscape();
 bool checkIfAbleToMove(int X, int Y, char input);
 void moveTo(bool movement, int move);
+void debugMode(int enableDebug);
+void stopLoopArray(int stopTrigger);
 
-int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA];
-int globalX = 3, globalY = 3, moveCounter = 0;
+int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuan[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+int globalX = 3, globalY = 3, moveCounter = 0, debugTrigger, stopTrigger;
+char areYouSure;
 
 void startFunc(){
     randomizeElements();
@@ -78,6 +81,7 @@ void setMainMatrixElements(){
 
 void printWholeMainGame(){
     int i, j;
+    char areYouSure;
     char movement;
     bool gameLoop = true;
     pressStartOrEscape();
@@ -102,6 +106,13 @@ void printWholeMainGame(){
             printf("\n");
         }
 
+        if(stopTrigger == 1){
+            gameLoop = false;
+        }
+        else if(moveCounter == 500){
+            gameLoop = false;
+        }
+
         printf("Move You Take:  %d\n", moveCounter);
         printf("Where would you like to move? up/left/right/down: ");
         scanf("%c", &movement);
@@ -109,34 +120,55 @@ void printWholeMainGame(){
         case 'w':
             /* code */
             printf("You pressed up.");
-            Sleep(1000);
+            //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'a':
             printf("You pressed left.");
-            Sleep(1000);
+            //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 's':
             printf("You pressed down.");
-            Sleep(1000);
+            //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'd':
             printf("You pressed right.");
-            Sleep(1000);
+            //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'k':
-            gameLoop = false;
+            // gameLoop = false;
+            printf("Are you sure? Y/N: ");
+            scanf("%c", &areYouSure);
+            if(areYouSure == 'y' || areYouSure == 'Y'){
+                gameLoop = false;
+            }
+            break;
+        case '/':
+            printf("debug mode.\n\n");
+            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3.I don't know\n\n"), scanf("%d", &debugTrigger);
+            debugMode(debugTrigger);
+            Sleep(500);
             break;
         default:
             //printf("Not a valid input.");
             Sleep(500);
         }
+        
+        for(i = 0; i < KOLOM; i++){
+            for(j = 0; j < BARIS; j++){
+                if(arrayMatrix[i][j] == arrayAcuan[i][j]){
+                    stopTrigger = 1;
+                }
+                else{
+                    stopTrigger = 0;
+                }
+            }
+        }
     }
-
-    printf("Break while loop");
+    printf("\n\nBreak while loop");
     Sleep(2000);
 }
 
@@ -331,5 +363,27 @@ void moveTo(bool movement, int move){
         Sleep(1000);
         moveCounter++;
     }
+}
 
+void debugMode(int enableDebug){
+    int i, j;
+    if(enableDebug == 1){
+        for(i = 0; i < KOLOM; i++){
+            for(j = 0; j < BARIS; j++){
+                arrayMatrix[i][j] = arrayAcuan[i][j];
+            }
+        }
+        moveCounter = 1;
+        printf("\nTransferred.");
+    }
+    else if(enableDebug == 2){
+        debugMode(1);
+        moveCounter = 500;
+        printf("\nCounter maxed out");
+    }
+}
+
+void areYouSureQuit(){
+    printf("Are you sure? Y/N: ");
+    scanf("%c", &areYouSure);
 }
