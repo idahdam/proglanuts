@@ -1,10 +1,15 @@
-// Track me 
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <conio.h>
 #include <time.h>
+#include <windows.h>
+
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
 
 #define BARIS 4
 #define KOLOM 4  
@@ -15,14 +20,15 @@
 void setupMatrix();
 void randomizeElements();
 void setMainMatrixElements();
-void printMatrixToScreen();
+void printWholeMainGame();
+void pressStartOrEscape();
 
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA];
 
 void startFunc(){
     randomizeElements();
     setMainMatrixElements();
-    printMatrixToScreen();
+    printWholeMainGame();
 }
 
 void randomizeElements(){
@@ -67,28 +73,93 @@ void setMainMatrixElements(){
     }
 }
 
-void printMatrixToScreen(){
+void printWholeMainGame(){
+    int i, j, move = 0;
+    char movement;
+    bool gameLoop = true;
+    pressStartOrEscape();
+    while(gameLoop){
+        system("cls");
+        printf("=====================================\n");
+        for(i = 0; i < BARIS; i++){
+            for(j = 0; j < KOLOM; j++){
+                if(j == 0){
+                    printf("|| %-5d||", arrayMatrix[i][j]);
+                }
+                // else if(j == KOLOM - 1){
+                //     printf(" %-5d||", arrayMatrix[i][j]);
+                // }
+                else{
+                    printf("  %-5d||", arrayMatrix[i][j]);
+                }
+            }
+            if(i >= 0 && i < BARIS - 1){
+                printf("\n-------------------------------------");
+            }
+            else{
+                printf("\n=====================================\n");
+            }
+            printf("\n");
+        }
+
+        printf("Move You Take:  %d\n", move);
+        printf("Where would you like to move? up/left/right/down: ");
+        scanf("%c", &movement);
+        switch (movement)
+        {
+        case 'w':
+            /* code */
+            printf("You pressed up.");
+            Sleep(1000);
+            move++;
+            break;
+        case 'a':
+            printf("You pressed left.");
+            Sleep(1000);
+            move++;
+            break;
+        case 's':
+            printf("You pressed down.");
+            Sleep(1000);
+            move++;
+            break;
+        case 'd':
+            printf("You pressed right.");
+            Sleep(1000);
+            move++;
+            break;
+        case 'k':
+            gameLoop = false;
+            break;
+        default:
+            printf("Not a valid input.");
+            //Sleep(2000);
+        }
+    }
+
+    printf("Break while loop");
+    Sleep(2000);
+}
+
+void pressStartOrEscape(){
     int i, j;
     printf("=====================================\n");
-    for(i = 0; i < BARIS; i++){
-        for(j = 0; j < KOLOM; j++){
-            if(j == 0){
-                printf("|| %-5d||", arrayMatrix[i][j]);
-            }
-            // else if(j == KOLOM - 1){
-            //     printf(" %-5d||", arrayMatrix[i][j]);
-            // }
-            else{
-                printf("  %-5d||", arrayMatrix[i][j]);
-            }
-        }
-        if(i >= 0 && i < BARIS - 1){
-            printf("\n-------------------------------------");
-        }
-        else{
-            printf("\n=====================================\n");
-        }
-        printf("\n");
 
-    }
+    for(i = 0; i < BARIS; i++){
+            for(j = 0; j < KOLOM; j++){
+                if(j == 2 && i == 2){
+                        printf("========Press Enter To Start========\n");
+                }
+            }
+            if(i >= 0 && i < BARIS - 1){
+                //printf("\n-------------------------------------");
+            }
+            else{
+                printf("\n=====================================\n");
+            }
+            printf("\n");
+        }
+
+    getch();
+    
 }
