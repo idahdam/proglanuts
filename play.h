@@ -22,8 +22,10 @@ void randomizeElements();
 void setMainMatrixElements();
 void printWholeMainGame();
 void pressStartOrEscape();
+bool checkIfAbleToMove(int X, int Y, char input);
 
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA];
+int globalX = 3, globalY = 3;
 
 void startFunc(){
     randomizeElements();
@@ -105,8 +107,7 @@ void printWholeMainGame(){
         printf("Move You Take:  %d\n", move);
         printf("Where would you like to move? up/left/right/down: ");
         scanf("%c", &movement);
-        switch (movement)
-        {
+        switch (movement){
         case 'w':
             /* code */
             printf("You pressed up.");
@@ -133,7 +134,7 @@ void printWholeMainGame(){
             break;
         default:
             printf("Not a valid input.");
-            //Sleep(2000);
+            Sleep(2000);
         }
     }
 
@@ -162,4 +163,40 @@ void pressStartOrEscape(){
 
     getch();
     
+}
+
+bool checkIfAbleToMove(int X, int Y, char input){
+    // checking corners
+    // bottom right
+    if(Y == 3){
+        if(X == 3){
+            if(input == 'd' || input == 's'){
+                printf("You can't move.");
+                return false;
+            }
+            else{
+                if(input == 'w'){
+                    //swap
+                }
+                else if(input == 'a'){
+                    //swap
+                }
+            }
+
+        }
+        else if(X == 0){
+            if(input == 'a' || input == 's'){
+                printf("You can't move.");
+                return false;
+            }
+            else{
+                if(input == 'w'){
+                    //swap
+                }
+                else if(input == 'd'){
+                    //swap
+                }
+            }
+        }
+    }
 }
