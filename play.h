@@ -115,21 +115,24 @@ void printWholeMainGame(){
         case 'a':
             printf("You pressed left.");
             Sleep(1000);
+            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 's':
             printf("You pressed down.");
             Sleep(1000);
+            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'd':
             printf("You pressed right.");
             Sleep(1000);
+            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'k':
             gameLoop = false;
             break;
         default:
-            printf("Not a valid input.");
-            Sleep(2000);
+            //printf("Not a valid input.");
+            Sleep(500);
         }
     }
 
@@ -182,31 +185,20 @@ bool checkIfAbleToMove(int X, int Y, char input){
         }
         else if(X == 1 || X == 2){
             if(input == 's'){
-                printf("You can't move.");
                 return false;
             }
             else{
-                if(input == 'w'){
-                    return true;
-                }
-                else if(input == 'd'){
-                    return true;
-                }
-                else if(input == 'a'){
+                if(input == 'w' || input == 'd' || input == 'a'){
                     return true;
                 }
             }
         }
         else if(X == 0){
             if(input == 'a' || input == 's'){
-                printf("You can't move.");
                 return false;
             }
             else{
-                if(input == 'w'){
-                    return true;
-                }
-                else if(input == 'd'){
+                if(input == 'w' || input == 'd'){
                     return true;
                 }
             }
@@ -218,13 +210,7 @@ bool checkIfAbleToMove(int X, int Y, char input){
                 return false;
             }
             else{
-                if(input == 'w'){
-                    return true;
-                }
-                else if(input == 'a'){
-                    return true;
-                }
-                else if(input == 's'){
+                if(input == 'w' || input == 'a' || input == 's'){
                     return true;
                 }
             }
@@ -232,23 +218,15 @@ bool checkIfAbleToMove(int X, int Y, char input){
         }
         else if(X == 1 || X == 2){
             if(input == 'a' || input == 's' || input == 'w' || input == 'd'){
-                printf("You can't move.");
-                return false;
+                return true;
             }
         }
         else if(X == 0){
             if(input == 'a'){
-                printf("You can't move.");
                 return false;
             }
             else{
-                if(input == 'w'){
-                    return true;
-                }
-                else if(input == 'd'){
-                    return true;
-                }
-                else if(input == 's'){
+                if(input == 'w' || input == 'd' || input == 's'){
                     return true;
                 }
             }
@@ -260,10 +238,7 @@ bool checkIfAbleToMove(int X, int Y, char input){
                 return false;
             }
             else{
-                if(input == 'a'){
-                    return true;
-                }
-                else if(input == 's'){
+                if(input == 'a' || input == 's'){
                     return true;
                 }
             }
@@ -271,7 +246,6 @@ bool checkIfAbleToMove(int X, int Y, char input){
         }
         else if(X == 1 || X == 2){
             if(input == 'w'){
-                printf("You can't move.");
                 return false;
             }
             else if(input == 'a' || input == 's' || input == 'd'){
@@ -280,7 +254,6 @@ bool checkIfAbleToMove(int X, int Y, char input){
         }
         else if(X == 0){
             if(input == 'a' || input == 'w'){
-                printf("You can't move.");
                 return false;
             }
             else{
@@ -298,7 +271,8 @@ bool checkIfAbleToMove(int X, int Y, char input){
 void moveTo(bool movement, int move){
     int a, b, temp;
     if(movement == false){
-        printf("You can't move.");
+        printf("\nYou can't move.");
+        Sleep(1000);
     }
     else{
         if(move == 'w'){
@@ -312,7 +286,7 @@ void moveTo(bool movement, int move){
             arrayMatrix[globalY][globalX] = a;
             arrayMatrix[globalY-1][globalX] = b;
 
-            globalY -= 1;
+            globalY--;
         }
         else if (move == 'a'){
             a = arrayMatrix[globalY][globalX];
@@ -325,7 +299,7 @@ void moveTo(bool movement, int move){
             arrayMatrix[globalY][globalX] = a;
             arrayMatrix[globalY][globalX-1] = b;
 
-            globalX-=1;
+            globalX--;
         }
         else if (move == 's'){
             a = arrayMatrix[globalY][globalX];
@@ -336,9 +310,9 @@ void moveTo(bool movement, int move){
             b = temp;
 
             arrayMatrix[globalY][globalX] = a;
-            arrayMatrix[globalY-1][globalX] = b;  
+            arrayMatrix[globalY+1][globalX] = b;  
 
-            globalY+=1;          
+            globalY++;          
         }
         else if (move == 'd'){
             a = arrayMatrix[globalY][globalX];
@@ -349,11 +323,12 @@ void moveTo(bool movement, int move){
             b = temp;
 
             arrayMatrix[globalY][globalX] = a;
-            arrayMatrix[globalY-1][globalX] = b;   
+            arrayMatrix[globalY][globalX+1] = b;   
 
-            globalX+=1;         
+            globalX++;         
         }
-        printf("You've succesfully moved.");
+        printf("\nYou've succesfully moved.");
+        Sleep(1000);
         moveCounter++;
     }
 
