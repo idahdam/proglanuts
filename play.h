@@ -181,7 +181,7 @@ void printWholeMainGame(){
             gameLoop = false;
             printf("\nWIN NOTIFICATION");
         }
-        else if(rmsec == 290){
+        else if(msec == 290){
             stopTrigger = 1;
             printf("\nLOSE NOTIFICATION");
             gameLoop = false;
