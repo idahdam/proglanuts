@@ -6,6 +6,9 @@
 #include <time.h>
 #include <windows.h>
 
+// selfmade preprocessor
+#include "result.h"
+
 // def kalau pake linux
 #ifdef _WIN32
 #include <Windows.h>
@@ -179,11 +182,11 @@ void printWholeMainGame(){
 
         if(stopTrigger == 1){
             gameLoop = false;
-            printf("\nWIN NOTIFICATION");
+            printWin();
         }
-        else if(msec == 290){
+        else if(rmsec <= 290){
             stopTrigger = 1;
-            printf("\nLOSE NOTIFICATION");
+            printLose();
             gameLoop = false;
         }
 
@@ -199,7 +202,7 @@ void printWholeMainGame(){
         }
 
     }
-    printf("\n\nBreak while loop");
+    
     Sleep(2000);
 }
 

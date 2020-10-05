@@ -11,3 +11,5 @@ Progress 30/9/2020
 Progress 5/10/2020
 1. Tambahin timer
 2. Determine losing and winning
+3. Result.h
+4. savefile.txt
