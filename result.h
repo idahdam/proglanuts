@@ -6,9 +6,11 @@
 #include <time.h>
 #include <windows.h>
 
+int score;
+
 void printWin();
 void printLost();
-void enterScore();
+void enterScore(int score);
 void showScore();
 
 void printWin(){
@@ -67,8 +69,15 @@ void printLose(){
     system("cls");
 }
 
-void enterScore(){
+void enterScore(int score){
+    FILE *fp;
+    char nama[50];
+    int i;
+    fp = fopen("savefile.txt", "w");
     printf("Masukkan namamu: ");
+    scanf("%s", &nama);
+    fprintf(fp, "%s - %d", nama, score);
+    fclose(fp);
 }
 
 void showScore(){
