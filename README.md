@@ -23,4 +23,5 @@ Progress 6/10/2020
     - kalau reset yang gerak bukan 0 HAHA
     - algoritma untuk memenangkan permainan (stopTrigger == 16)
 3. Adding feature to debugging mode
+4. Changing seconds to minute:seconds format
 

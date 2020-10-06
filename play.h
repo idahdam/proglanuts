@@ -35,6 +35,8 @@ void moveTo(bool movement, int move);
 void debugMode(int enableDebug);
 void stopLoopArray(int stopTrigger);
 void timerRefresh(char movement);
+int formattingSeconds(int seconds);
+int formattingMinutes(int seconds);
 
 // declaring global variables
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuan[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
@@ -95,7 +97,7 @@ void setMainMatrixElements(){
 
 // main interface
 void printWholeMainGame(){
-    int i, j, msec, rmsec;
+    int i, j, msec, menit, detik, rmsec;
     char areYouSure;
     char movement;
     char test = movement;
@@ -112,6 +114,9 @@ void printWholeMainGame(){
         difference = clock() - before;
         msec = difference * 1000/CLOCKS_PER_SEC;
         rmsec = 300 - msec/1000;
+        detik = formattingSeconds(rmsec);
+        menit = formattingMinutes(rmsec);
+        printf("timer: %d:%d\n\n", menit, detik);
         printf("timer: %d\n\n", rmsec);
         printf("=====================================\n");
         for(i = 0; i < BARIS; i++){
@@ -235,7 +240,6 @@ void pressStartOrEscape(){
         }
 
     getch();
-    
 }
 
 // each input will make this function runs
@@ -406,6 +410,19 @@ void moveTo(bool movement, int move){
         printf("\nYou've succesfully moved.");
         moveCounter++;
     }
+}
+
+// translate time in seconds into minutes ;D
+int formattingSeconds(int seconds){
+    int detik;
+    detik = seconds%60;
+    return detik;
+}
+
+int formattingMinutes(int seconds){
+    int menit;
+    menit = seconds/60;
+    return menit;
 }
 
 // this function is made to test final position, max move, timer max
