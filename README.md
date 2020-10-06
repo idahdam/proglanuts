@@ -1,5 +1,7 @@
 # proglanuts hadi jo
-gas
+
+## deprecated, ganti ke hade-devc++
+
 Progress 30/9/2020
 
 1. Bikin 4x4 square array diisi dengan bilangan random 1-15
