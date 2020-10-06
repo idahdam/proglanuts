@@ -27,7 +27,7 @@
 	// for the result.c
 	void printWin();
 	void printLose();
-	void enterScore(int score);
+	void enterScore(int score, int minutes, int seconds);
 	void showScore();
 	
 	// for the mainmenu.c

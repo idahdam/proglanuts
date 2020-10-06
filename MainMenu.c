@@ -15,11 +15,9 @@ void intro(){
 
     printf("press any key to continue_");
     getch();
-    system("cls");
 }
 
 void mainMenu(){
-    intro();
     printf("=====================================================\n");
     printf("                     Main Menu                       \n");
     printf("                                                     \n");

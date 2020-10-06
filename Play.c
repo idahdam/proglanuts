@@ -198,7 +198,9 @@ void printWholeMainGame(){
 
     }
     // put the enter the score here
+    enterScore(moveCounter, menit, detik);
     // put print the score here  
+    showScore();
     askPlayOrMain();
     Sleep(2000);
 }
@@ -438,6 +440,7 @@ void debugMode(int enableDebug){
 // asking if they wanna play again or go to main menu
 void askPlayOrMain(){
     int opt;
+    system("cls");
     printf("Do you want to play again?\n");
     printf("1. Play again\n");
     printf("2. Go to main menu\n");
@@ -449,6 +452,7 @@ void askPlayOrMain(){
             printf("Bringing you back to main menu in 2 seconds.");
             // insert main menu here
             Sleep(2000);
+            main();
     }
 }
 

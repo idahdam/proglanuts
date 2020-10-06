@@ -1,5 +1,7 @@
 #include "selfHeader.h"
 
+int number = 1;
+
 void printWin(){
     system("cls");
     printf("WIN");
@@ -56,30 +58,40 @@ void printLose(){
     system("cls");
 }
 
-void enterScore(int score){
+void enterScore(int score, int minutes, int seconds){
     FILE *fp;
-    char nama[50];
+    char nama[3];
     int i;
-    fp = fopen("savefile.txt", "w");
-    printf("Masukkan namamu: ");
+    fp = fopen("savefile.txt", "a");
+    printf("Masukkan 3 huruf inisialmu: ");
     scanf("%s", &nama);
-    fprintf(fp, "%s - %d", nama, score);
-    fclose(fp);
+    fprintf(fp, "%s \t %d \t %d:%d\n", nama, score, minutes, seconds);
+	fclose(fp);
 }
 
 void showScore(){
     FILE *fp;
     char str[MAXCHAR];
     char filename[] = "savefile.txt";
-    
-    printf("Scoreboard: ");
+    system("cls");
+	number = 1;
     fp = fopen(filename, "r");
     if (fp == NULL){
         // printf("Could not open file %s", filename);
         // return 1;
-        printf("Scoreboard is empty.");
+        printf("Scoreboard is empty.\n");
     }
-    while (fgets(str, MAXCHAR, fp) != NULL)
-        printf("%s", str);
+    else{
+    	printf("\t\tScoreBoard\t\t\n");
+    	printf("No. \t Name \t Move \t Minutes:Seconds\n\n");
+	}
+	
+    while (fgets(str, MAXCHAR, fp) != NULL){
+		printf("%d \t %s", number, str);
+        number++;
+	}
+
     fclose(fp);
+    printf("\n\nEnter to go to main.");
+    getch();
 }

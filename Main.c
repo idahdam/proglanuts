@@ -1,15 +1,11 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <time.h>
-
 #include "selfHeader.h"
 
 int main(int argc, char const *argv[]){
     /* code */
     int opsi;
+    intro();
     MAIN:
+    system("cls");
     mainMenu();
     printf("input: "), scanf("%d", &opsi);
     switch(opsi){
