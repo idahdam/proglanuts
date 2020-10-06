@@ -25,5 +25,6 @@ Progress 6/10/2020
 3. Adding feature to debugging mode
 4. Changing seconds to minute:seconds format
 5. Moving to branch hade-devC++ karena devc++ pakai makefile
+6. Added save score feature
 
 
