@@ -9,7 +9,17 @@ Progress 30/9/2020
 5. Break Loop dan are you sure quit ditnaya dulu
 
 Progress 5/10/2020
+
 1. Tambahin timer
 2. Determine losing and winning
 3. Result.h
 4. savefile.txt
+
+Progress 6/10/2020
+
+1. Tanyain mau reset atau nggak
+2. Fixing bugs
+2. Fixed bugs
+    - kalau reset yang gerak bukan 0 HAHA
+3. Adding feature to debugging mode
+

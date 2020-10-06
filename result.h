@@ -6,6 +6,7 @@
 #include <time.h>
 #include <windows.h>
 
+// global variable
 int score;
 
 void printWin();
@@ -40,7 +41,7 @@ void printWin(){
     printf("WIN");
     printf("WIN");
     printf("WIN");
-    Sleep(1000);
+    Sleep(3000);
     system("cls");
 }
 
@@ -65,7 +66,7 @@ void printLose(){
     printf("LOSE");
     printf("LOSE");
     printf("LOSE");
-    Sleep(1000);
+    Sleep(3000);
     system("cls");
 }
 
@@ -81,5 +82,18 @@ void enterScore(int score){
 }
 
 void showScore(){
-
+    FILE *fp;
+    char str[MAXCHAR];
+    char filename[] = "savefile.txt";
+    
+    printf("Scoreboard: ");
+    fp = fopen(filename, "r");
+    if (fp == NULL){
+        // printf("Could not open file %s", filename);
+        // return 1;
+        printf("Scoreboard is empty.");
+    }
+    while (fgets(str, MAXCHAR, fp) != NULL)
+        printf("%s", str);
+    fclose(fp);
 }

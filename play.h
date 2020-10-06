@@ -29,6 +29,7 @@ void randomizeElements();
 void setMainMatrixElements();
 void printWholeMainGame();
 void pressStartOrEscape();
+void askPlayOrMain();
 bool checkIfAbleToMove(int X, int Y, char input);
 void moveTo(bool movement, int move);
 void debugMode(int enableDebug);
@@ -38,6 +39,7 @@ void timerRefresh(char movement);
 // declaring global variables
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuan[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
 int globalX = 3, globalY = 3, moveCounter = 0, debugTrigger, stopTrigger, timer = 300;
+bool gameLoop;
 char areYouSure;
 
 // main function in main.c will run this.
@@ -97,8 +99,11 @@ void printWholeMainGame(){
     char areYouSure;
     char movement;
     char test = movement;
-    bool gameLoop = true;
     clock_t before  = clock(), difference;
+    gameLoop = true;
+    globalX = 3, globalY = 3;
+    debugTrigger = 0;
+    stopTrigger = 0, moveCounter = 0;
     pressStartOrEscape();
 
     while(gameLoop){
@@ -126,7 +131,6 @@ void printWholeMainGame(){
             }
             printf("\n");
         }
-
 
         // Sleep(1000);
 
@@ -168,9 +172,10 @@ void printWholeMainGame(){
                 printf("going back");
             }
             break;
+
         case '/':
             printf("\ndebug mode.\n\n");
-            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3.I don't know\n\n"), scanf("%d", &debugTrigger);
+            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTrigger);
             debugMode(debugTrigger);
             Sleep(500);
             break;
@@ -180,12 +185,12 @@ void printWholeMainGame(){
             //Sleep(500);
         }
 
-        if(stopTrigger == 1){
+        if(stopTrigger == 16){
             gameLoop = false;
             printWin();
         }
-        else if(rmsec <= 290){
-            stopTrigger = 1;
+        if(rmsec <= 290){
+            // stopTrigger = 1;
             printLose();
             gameLoop = false;
         }
@@ -193,16 +198,18 @@ void printWholeMainGame(){
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
                 if(arrayMatrix[i][j] == arrayAcuan[i][j]){
-                    stopTrigger = 1;
+                    stopTrigger += 1;
                 }
                 else{
-                    stopTrigger = 0;
+                    stopTrigger += 0;
                 }
             }
         }
 
     }
-    
+    // put the enter the score here
+    // put print the score here  
+    askPlayOrMain();
     Sleep(2000);
 }
 
@@ -417,6 +424,29 @@ void debugMode(int enableDebug){
         debugMode(1);
         moveCounter = 500;
         printf("\nCounter maxed out");
+    }
+    else if(enableDebug == 3){
+        startFunc();
+    }
+    else if(enableDebug == 4){
+        printf("Ok...");
+    }
+}
+
+// asking if they wanna play again or go to main menu
+void askPlayOrMain(){
+    int opt;
+    printf("Do you want to play again?\n");
+    printf("1. Play again\n");
+    printf("2. Go to main menu\n");
+    printf("input: "), scanf("%d", &opt);
+    switch(opt){
+        case 1:
+            startFunc();
+        case 2:
+            printf("Bringing you back to main menu in 2 seconds.");
+            // insert main menu here
+            Sleep(2000);
     }
 }
 
