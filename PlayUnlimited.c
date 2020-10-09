@@ -117,6 +117,7 @@ void printWholeMainGameUnli(){
         // Sleep(1000);
 
         printf("\nMove You Take:  %d\n", moveCounterUnli);
+        printf("k to quit.\n");
         printf("Where would you like to move? up/left/right/down: ");
         // scanf("%c", &movement);
         movement = getch();
