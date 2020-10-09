@@ -25,7 +25,7 @@
 
 // declaring global variables
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuan[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
-int globalX = 3, globalY = 3, moveCounter = 0, debugTrigger, stopTrigger, timer = 300;
+int globalX = 3, globalY = 3, moveCounter = 0, debugTrigger, stopTrigger = 0, timer = 300;
 bool gameLoop;
 char areYouSure;
 
@@ -191,7 +191,7 @@ void printWholeMainGame(){
                     stopTrigger += 1;
                 }
                 else{
-                    stopTrigger += 0;
+                    stopTrigger = 0;
                 }
             }
         }
@@ -201,6 +201,7 @@ void printWholeMainGame(){
     enterScore(moveCounter, menit, detik);
     // put print the score here  
     showScore();
+    stopTrigger = 0;
     askPlayOrMain();
     Sleep(2000);
 }
