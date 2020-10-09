@@ -31,4 +31,5 @@ Progress 6/10/2020
 
 Progress 9/10/2020
 1. Fix bugs yang bikin menang
+2. Exit option added
 
