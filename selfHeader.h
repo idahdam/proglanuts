@@ -36,6 +36,11 @@
 	
 	// for the howtoplay.c
 	void howToPlay();	
+	
+	// for exit
+	void printExit();
+	int chooseOptionExit(char sureness);
+	void sayGoodbye();
 
 #endif
 

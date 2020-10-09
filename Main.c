@@ -2,7 +2,8 @@
 
 int main(int argc, char const *argv[]){
     /* code */
-    int opsi;
+    int opsi, exitNum;
+    char exitChar;
     intro();
     MAIN:
     system("cls");
@@ -17,8 +18,16 @@ int main(int argc, char const *argv[]){
     	case 3:
     		showScore();
     		goto MAIN;
-    	case 0:
-    		printf("Belum diset");
+    	case 4:
+			printExit();
+			exitChar = getch();
+			exitNum = chooseOptionExit(exitChar);
+			if(exitNum == 101){
+				goto MAIN;
+			}
+			else if(exitNum == 110){
+				sayGoodbye();
+			}
     		
 	}
 
