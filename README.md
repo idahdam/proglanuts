@@ -30,7 +30,9 @@ Progress 6/10/2020
 
 
 Progress 9/10/2020
-1. Fix bugs yang bikin menang
+1. Fix bugs:
+    - algo menang
+    - k to quit error
 2. Exit option added
 3. 2nd mode added, unlimited move, unlimited time(not really)
 4. merge branch master/jo untuk Result.c
