@@ -1,11 +1,3 @@
-// Defining Preprocessor
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <time.h>
-#include <windows.h>
-
 // selfmade preprocessor
 #include "selfHeader.h"
 
@@ -24,20 +16,20 @@
 #define BANYAK_ANGKA 15
 
 // declaring global variables
-int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuan[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
-int globalX = 3, globalY = 3, moveCounter = 0, debugTrigger, stopTrigger = 0, timer = 300;
-bool gameLoop;
-char areYouSure;
+int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuanUnli[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
+int globalXUnli = 3, globalYUnli = 3, moveCounterUnli = 0, debugTriggerUnli, stopTriggerUnli = 0, timerUnli = 10000;
+bool gameLoopUnli;
+char areYouSureUnli;
 
 // main function in main.c will run this.
-void startFunc(){
-    randomizeElements();
-    setMainMatrixElements();
-    printWholeMainGame();
+void startFuncUnli(){
+    randomizeElementsUnli();
+    setMainMatrixElementsUnli();
+    printWholeMainGameUnli();
 }
 
 // this function will randomize each element on the block
-void randomizeElements(){
+void randomizeElementsUnli(){
     int get, c, i, j, k =0, chk, x;
     c = i = 0;
     srand(time(NULL)); // this will ensure that every time, program will generate different set of numbers. If you remove this, same set of numbers will generated every time you run the program.
@@ -67,7 +59,7 @@ void randomizeElements(){
 }
 
 // randomized element from randomizeElements will be moved here
-void setMainMatrixElements(){
+void setMainMatrixElementsUnli(){
     int i, j, k = 0;
     for(i = 0; i < 4; i++){
         for(j = 0; j < 4; j++){
@@ -81,24 +73,24 @@ void setMainMatrixElements(){
 }
 
 // main interface
-void printWholeMainGame(){
+void printWholeMainGameUnli(){
     int i, j, msec, menit, detik, rmsec;
     char areYouSure;
     char movement;
     char test = movement;
     clock_t before  = clock(), difference;
-    gameLoop = true;
-    globalX = 3, globalY = 3;
-    debugTrigger = 0;
-    stopTrigger = 0, moveCounter = 0;
-    pressStartOrEscape();
+    gameLoopUnli = true;
+    globalXUnli = 3, globalYUnli = 3;
+    debugTriggerUnli = 0;
+    stopTriggerUnli = 0, moveCounterUnli = 0;
+    pressStartOrEscapeUnli();
 
-    while(gameLoop){
+    while(gameLoopUnli){
         TIMER:
         system("cls");
         difference = clock() - before;
         msec = difference * 1000/CLOCKS_PER_SEC;
-        rmsec = timer - msec/1000;
+        rmsec = timerUnli - msec/1000;
         detik = formattingSeconds(rmsec);
         menit = formattingMinutes(rmsec);
         printf("timer: %d:%d\n\n", menit, detik);
@@ -124,7 +116,7 @@ void printWholeMainGame(){
 
         // Sleep(1000);
 
-        printf("\nMove You Take:  %d\n", moveCounter);
+        printf("\nMove You Take:  %d\n", moveCounterUnli);
         printf("Where would you like to move? up/left/right/down: ");
         // scanf("%c", &movement);
         movement = getch();
@@ -133,30 +125,30 @@ void printWholeMainGame(){
             /* code */
             printf("\nYou pressed up.");
             //Sleep(1000);
-            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
+            moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 'a':
             printf("\nYou pressed left.");
             //Sleep(1000);
-            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
+            moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 's':
             printf("\nYou pressed down.");
             //Sleep(1000);
-            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
+            moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 'd':
             printf("\nYou pressed right.");
             //Sleep(1000);
-            moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
+            moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 'k':
             // gameLoop = false;
             printf("Are you sure? Y/N: ");
-            scanf("%c", &areYouSure);
+            scanf("%c", &areYouSureUnli);
             Sleep(500);
-            if(areYouSure == 'y' || areYouSure == 'Y'){
-                gameLoop = false;
+            if(areYouSureUnli == 'y' || areYouSureUnli == 'Y'){
+                gameLoopUnli = false;
             }
             else{
                 printf("going back");
@@ -165,8 +157,8 @@ void printWholeMainGame(){
 
         case '/':
             printf("\ndebug mode.\n\n");
-            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTrigger);
-            debugMode(debugTrigger);
+            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTriggerUnli);
+            debugModeUnli(debugTriggerUnli);
             Sleep(500);
             break;
 
@@ -175,39 +167,39 @@ void printWholeMainGame(){
             //Sleep(500);
         }
 
-        if(stopTrigger == 16){
-            gameLoop = false;
+        if(stopTriggerUnli == 16){
+            gameLoopUnli = false;
             printWin();
         }
-        if(rmsec <= 290){
+        if(rmsec <= -INT_MAX){
             // stopTrigger = 1;
             printLose();
-            gameLoop = false;
+            gameLoopUnli = false;
         }
 
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
-                if(arrayMatrix[i][j] == arrayAcuan[i][j]){
-                    stopTrigger += 1;
+                if(arrayMatrix[i][j] == arrayAcuanUnli[i][j]){
+                    stopTriggerUnli += 1;
                 }
                 else{
-                    stopTrigger = 0;
+                    stopTriggerUnli = 0;
                 }
             }
         }
 
     }
     // put the enter the score here
-    enterScore(moveCounter, menit, detik);
+    enterScore(moveCounterUnli, menit, detik);
     // put print the score here  
     showScore();
-    stopTrigger = 0;
-    askPlayOrMain();
+    stopTriggerUnli = 0;
+    askPlayOrMainUnli();
     Sleep(2000);
 }
 
 // before playing, will be asked to press enter
-void pressStartOrEscape(){
+void pressStartOrEscapeUnli(){
     system("cls");
     int i, j;
     printf("=====================================\n");
@@ -231,7 +223,7 @@ void pressStartOrEscape(){
 }
 
 // each input will make this function runs
-bool checkIfAbleToMove(int X, int Y, char input){
+bool checkIfAbleToMoveUnli(int X, int Y, char input){
     int moveToWhere;
     // checking corners
     // last row (Y =)
@@ -336,7 +328,7 @@ bool checkIfAbleToMove(int X, int Y, char input){
 }
 
 // if checkIfAbleToMove == true, you can move to the destined location
-void moveTo(bool movement, int move){
+void moveToUnli(bool movement, int move){
     int a, b, temp;
     if(movement == false){
         printf("\nYou can't move.");
@@ -344,94 +336,94 @@ void moveTo(bool movement, int move){
     }
     else{
         if(move == 'w'){
-            a = arrayMatrix[globalY][globalX];
-            b = arrayMatrix[globalY-1][globalX];
+            a = arrayMatrix[globalYUnli][globalXUnli];
+            b = arrayMatrix[globalYUnli-1][globalXUnli];
 
             temp = a;
             a = b;
             b = temp;
 
-            arrayMatrix[globalY][globalX] = a;
-            arrayMatrix[globalY-1][globalX] = b;
+            arrayMatrix[globalYUnli][globalXUnli] = a;
+            arrayMatrix[globalYUnli-1][globalXUnli] = b;
 
-            globalY--;
+            globalYUnli--;
         }
         else if (move == 'a'){
-            a = arrayMatrix[globalY][globalX];
-            b = arrayMatrix[globalY][globalX-1];
+            a = arrayMatrix[globalYUnli][globalXUnli];
+            b = arrayMatrix[globalYUnli][globalXUnli-1];
 
             temp = a;
             a = b;
             b = temp;
 
-            arrayMatrix[globalY][globalX] = a;
-            arrayMatrix[globalY][globalX-1] = b;
+            arrayMatrix[globalYUnli][globalXUnli] = a;
+            arrayMatrix[globalYUnli][globalXUnli-1] = b;
 
-            globalX--;
+            globalXUnli--;
         }
         else if (move == 's'){
-            a = arrayMatrix[globalY][globalX];
-            b = arrayMatrix[globalY+1][globalX];
+            a = arrayMatrix[globalYUnli][globalXUnli];
+            b = arrayMatrix[globalYUnli+1][globalXUnli];
 
             temp = a;
             a = b;
             b = temp;
 
-            arrayMatrix[globalY][globalX] = a;
-            arrayMatrix[globalY+1][globalX] = b;  
+            arrayMatrix[globalYUnli][globalXUnli] = a;
+            arrayMatrix[globalYUnli+1][globalXUnli] = b;  
 
-            globalY++;          
+            globalYUnli++;          
         }
         else if (move == 'd'){
-            a = arrayMatrix[globalY][globalX];
-            b = arrayMatrix[globalY][globalX+1];
+            a = arrayMatrix[globalYUnli][globalXUnli];
+            b = arrayMatrix[globalYUnli][globalXUnli+1];
 
             temp = a;
             a = b;
             b = temp;
 
-            arrayMatrix[globalY][globalX] = a;
-            arrayMatrix[globalY][globalX+1] = b;   
+            arrayMatrix[globalYUnli][globalXUnli] = a;
+            arrayMatrix[globalYUnli][globalXUnli+1] = b;   
 
-            globalX++;         
+            globalXUnli++;         
         }
         printf("\nYou've succesfully moved.");
-        moveCounter++;
+        moveCounterUnli++;
     }
 }
 
 // translate time in seconds into minutes ;D
-int formattingSeconds(int seconds){
+int formattingSecondsUnli(int seconds){
     int detik;
     detik = seconds%60;
     return detik;
 }
 
-int formattingMinutes(int seconds){
+int formattingMinutesUnli(int seconds){
     int menit;
     menit = seconds/60;
     return menit;
 }
 
 // this function is made to test final position, max move, timer max
-void debugMode(int enableDebug){
+void debugModeUnli(int enableDebug){
     int i, j;
     if(enableDebug == 1){
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
-                arrayMatrix[i][j] = arrayAcuan[i][j];
+                arrayMatrix[i][j] = arrayAcuanUnli[i][j];
             }
         }
-        moveCounter = 1;
+        moveCounterUnli = 1;
         printf("\nTransferred.");
     }
     else if(enableDebug == 2){
-        debugMode(1);
-        moveCounter = 500;
+        debugModeUnli(1);
+        moveCounterUnli = INT_MAX;
         printf("\nCounter maxed out");
     }
     else if(enableDebug == 3){
-        startFunc();
+        startFuncUnli();
     }
     else if(enableDebug == 4){
         printf("Ok...");
@@ -439,7 +431,7 @@ void debugMode(int enableDebug){
 }
 
 // asking if they wanna play again or go to main menu
-void askPlayOrMain(){
+void askPlayOrMainUnli(){
     int opt;
     system("cls");
     printf("Do you want to play again?\n");
@@ -448,7 +440,7 @@ void askPlayOrMain(){
     printf("input: "), scanf("%d", &opt);
     switch(opt){
         case 1:
-            startFunc();
+            startFuncUnli();
         case 2:
             printf("Bringing you back to main menu in 2 seconds.");
             // insert main menu here
@@ -458,7 +450,7 @@ void askPlayOrMain(){
 }
 
 // asking if they're sure to quit
-void areYouSureQuit(){
+void areYouSureQuitUnli(){
     printf("Are you sure? Y/N: ");
-    scanf("%c", &areYouSure);
+    scanf("%c", &areYouSureUnli);
 }

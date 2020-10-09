@@ -11,7 +11,8 @@ int main(int argc, char const *argv[]){
     printf("input: "), scanf("%d", &opsi);
     switch(opsi){
     	case 1:
-    		startFunc();
+    		//startFunc();
+    		printOption();
     	case 2:
     		howToPlay();
     		goto MAIN;
