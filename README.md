@@ -29,3 +29,6 @@ Progress 6/10/2020
 7. Merge branch master/jo biar jadi satu 
 
 
+Progress 9/10/2020
+1. Fix bugs yang bikin menang
+
