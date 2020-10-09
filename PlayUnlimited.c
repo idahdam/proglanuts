@@ -95,21 +95,29 @@ void printWholeMainGameUnli(){
         menit = formattingMinutes(rmsec);
         printf("timer: %d:%d\n\n", menit, detik);
         printf("timer: %d\n\n", rmsec);
-        printf("=====================================\n");
+        printf("=======================================\n");
         for(i = 0; i < BARIS; i++){
+        	printf("|| ");
             for(j = 0; j < KOLOM; j++){
-                if(j == 0){
-                    printf("|| %-5d||", arrayMatrix[i][j]);
-                }
+//                if(j == 0 && globalXUnli != 0 || j == 0 && globalYUnli != 0){
+//                    printf("|| %-5d||", arrayMatrix[i][j]);
+//                }
+                if(j == globalXUnli && i == globalYUnli){
+                	//printf("  %-5d||", arrayMatrix[i][j]);
+                	printf("       ||");
+				}
+//				else if(globalXUnli == 0 && globalYUnli == 0 && j == 0 ){
+//					printf("||       ||", arrayMatrix[i][j]);
+				//}
                 else{
                     printf("  %-5d||", arrayMatrix[i][j]);
                 }
             }
             if(i >= 0 && i < BARIS - 1){
-                printf("\n-------------------------------------");
+                printf("\n---------------------------------------");
             }
             else{
-                printf("\n=====================================\n");
+                printf("\n=======================================\n");
             }
             printf("\n");
         }
