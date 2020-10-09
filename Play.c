@@ -145,17 +145,24 @@ void printWholeMainGame(){
             break;
         case 'k':
             // gameLoop = false;
-            printf("Are you sure? Y/N: ");
-            scanf("%c", &areYouSure);
+            printf("\n\nAre you sure? y/n: ");
+            areYouSure = getch();
             Sleep(500);
-            if(areYouSure == 'y' || areYouSure == 'Y'){
-                gameLoop = false;
-            }
-            else{
-                printf("going back");
-            }
-            break;
-
+            switch(areYouSure){
+            	case 'y':
+            		gameLoop = false;
+            		continue;
+            	case 'n':
+            		printf("Going back");
+            		continue;
+			}
+//            if(areYouSure == 'y' || areYouSure == 'Y'){
+//                gameLoop = false;
+//            }
+//            else{
+//                printf("going back");
+//            }
+//            break;
         case '/':
             printf("\ndebug mode.\n\n");
             printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTrigger);

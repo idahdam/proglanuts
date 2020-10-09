@@ -227,6 +227,7 @@ void printLose(){
 void enterScore(int score, int minutes, int seconds){
     FILE *fp;
     char nama[3];
+    system("cls");
     fp = fopen("savefile.txt", "a");
     printf("Masukkan 3 huruf inisialmu: ");
     scanf("%s", &nama);

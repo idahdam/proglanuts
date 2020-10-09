@@ -148,12 +148,21 @@ void printWholeMainGameUnli(){
             printf("Are you sure? Y/N: ");
             scanf("%c", &areYouSureUnli);
             Sleep(500);
-            if(areYouSureUnli == 'y' || areYouSureUnli == 'Y'){
-                gameLoopUnli = false;
-            }
-            else{
-                printf("going back");
-            }
+            areYouSureUnli = getch();
+            switch(areYouSureUnli){
+            	case 'y':
+            		gameLoopUnli = false;
+            		continue;
+            	case 'n':
+            		printf("Going back");
+            		continue;
+			}
+//            if(areYouSureUnli == 'y' || areYouSureUnli == 'Y'){
+//                gameLoopUnli = false;
+//            }
+//            else{
+//                printf("going back");
+//            }
             break;
 
         case '/':
