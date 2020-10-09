@@ -179,7 +179,7 @@ void printWholeMainGame(){
             gameLoop = false;
             printWin();
         }
-        if(rmsec <= 290){
+        if(rmsec <= 0){
             // stopTrigger = 1;
             printLose();
             gameLoop = false;
