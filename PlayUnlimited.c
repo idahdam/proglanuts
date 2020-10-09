@@ -17,7 +17,7 @@
 
 // declaring global variables
 int arrayMatrix[BARIS][KOLOM], arr[BANYAK_ANGKA], arrayAcuanUnli[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0}};
-int globalXUnli = 3, globalYUnli = 3, moveCounterUnli = 0, debugTriggerUnli, stopTriggerUnli = 0, timerUnli = 10000;
+int globalXUnli = 3, globalYUnli = 3, moveCounterUnli = 0, debugTriggerUnli, stopTriggerUnli = 0, timerUnli = INT_MAX;
 bool gameLoopUnli;
 char areYouSureUnli;
 
