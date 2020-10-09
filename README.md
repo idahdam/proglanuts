@@ -36,4 +36,5 @@ Progress 9/10/2020
 2. Exit option added
 3. 2nd mode added, unlimited move, unlimited time(not really)
 4. merge branch master/jo untuk Result.c
+5. update angka 0 bakal jadi blank biar keliatan
 
