@@ -459,6 +459,7 @@ void askPlayOrMain(){
             startFunc();
         case 2:
             printf("Bringing you back to main menu in 2 seconds.");
+            
             // insert main menu here
             Sleep(2000);
             main();
