@@ -428,6 +428,8 @@ void debugMode(int enableDebug){
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
                 arrayMatrix[i][j] = arrayAcuan[i][j];
+                globalXUnli = 3;
+                globalYUnli = 3;
             }
         }
         moveCounter = 1;

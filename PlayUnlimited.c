@@ -430,6 +430,8 @@ void debugModeUnli(int enableDebug){
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
                 arrayMatrix[i][j] = arrayAcuanUnli[i][j];
+                globalXUnli = 3;
+                globalYUnli = 3;
             }
         }
         moveCounterUnli = 1;
