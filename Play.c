@@ -1,11 +1,3 @@
-// Defining Preprocessor
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
-#include <conio.h>
-#include <time.h>
-#include <windows.h>
-
 // selfmade preprocessor
 #include "selfHeader.h"
 
