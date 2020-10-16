@@ -181,7 +181,7 @@ void printWholeMainGameUnli(){
 
         case '/':
             printf("\n\t\t\tdebug mode.\n\n");
-            printf("\t\t\tEnter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTriggerUnli);
+            printf("\t\t\tEnter debug menu: \n\n\t\t\t1. Finish the Game\n\t\t\t2. Maxout Move\n\t\t\t3. Reset\n\t\t\t4. Return to game\n\n\t\t\t"), scanf("%d", &debugTriggerUnli);
             debugModeUnli(debugTriggerUnli);
             Sleep(500);
             break;
@@ -233,7 +233,7 @@ void printWholeMainGameUnli(){
 void pressStartOrEscapeUnli(){
     system("cls");
     int i, j;
-    printf("\t\t\t=====================================\n");
+    printf("\n\n\t\t\t=====================================\n");
 
     for(i = 0; i < BARIS; i++){
             for(j = 0; j < KOLOM; j++){
@@ -471,9 +471,13 @@ void debugModeUnli(int enableDebug){
 void askPlayOrMainUnli(){
     int opt;
     system("cls");
-    printf("\t\t\tDo you want to play again?\n");
+    printf("\t\t\t");
+    printf("=======================================================\n");
+    printf("\t\t\t                Do you want to play again?        \n");printf("\t\t\t");
+    printf("=======================================================\n");
     printf("\t\t\t1. Play again\n");
-    printf("\t\t\t2. Go to main menu\n");
+    printf("\t\t\t2. Go to main menu\n");printf("\t\t\t");
+    printf("=======================================================\n");
     printf("\t\t\tinput: "), scanf("%d", &opt);
     switch(opt){
         case 1:

@@ -175,7 +175,7 @@ void printWholeMainGame(){
 //            break;
         case '/':
             printf("\n\t\t\tdebug mode.\n\n");
-            printf("\t\t\tEnter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTrigger);
+            printf("\t\t\tEnter debug menu: \n\n\t\t\t1. Finish the Game\n\t\t\t2. Maxout Move\n\t\t\t3. Reset\n\t\t\t4. Return to game\n\n\t\t\t"), scanf("%d", &debugTrigger);
             debugMode(debugTrigger);
             Sleep(500);
             break;
@@ -225,7 +225,7 @@ void printWholeMainGame(){
 void pressStartOrEscape(){
     system("cls");
     int i, j;
-    printf("\t\t\t");
+    printf("\n\n\t\t\t");
     printf("=====================================\n");
 
     for(i = 0; i < BARIS; i++){
@@ -357,7 +357,7 @@ void moveTo(bool movement, int move){
     int a, b, temp;
     if(movement == false){
     	system("COLOR 84");
-        printf("\nYou can't move.");
+        printf("\n\t\t\tYou can't move.");
         system("COLOR 8f");
         Sleep(1000);
     }
@@ -466,11 +466,14 @@ void askPlayOrMain(){
     int opt;
     system("cls");
     printf("\t\t\t");
-    printf("Do you want to play again?\n");
+    printf("=======================================================\n");printf("\t\t\t");
+    printf("                Do you want to play again?\n");printf("\t\t\t");
+    printf("=======================================================\n");
     printf("\t\t\t");
     printf("1. Play again\n");
     printf("\t\t\t");
-    printf("2. Go to main menu\n");
+    printf("2. Go to main menu\n");printf("\t\t\t");
+    printf("=======================================================\n");printf("\t\t\t");
     printf("input: "), scanf("%d", &opt);
     switch(opt){
         case 1:
