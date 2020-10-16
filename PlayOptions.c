@@ -3,10 +3,14 @@
 void printOption(){
 	int choice;
 	system("cls");
-	printf("There are two modes here...\n");
-	printf("1. Normal Mode (Limited Movements, Limited Time)\n");
-	printf("2. Free Mode (Unlimited Movements, Unlimited Time)\n");
-	printf("Input your choice: \n\n");
+	printf("\t\t\t");
+	printf("=======================================================\n\n");printf("\t\t\t");
+	printf("               There are two modes here...\n\n");printf("\t\t\t");
+	printf("=======================================================\n\n");printf("\t\t\t");
+	printf("1. Normal Mode (Limited Movements, Limited Time)\n");printf("\t\t\t");
+	printf("2. Free Mode (Unlimited Movements, Unlimited Time)\n\n");printf("\t\t\t");
+	printf("=======================================================\n\n");
+	printf("\t\t\tInput your choice:");
 	scanf("%d", &choice);
 	switch(choice){
 		case 1:

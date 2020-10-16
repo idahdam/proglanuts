@@ -93,10 +93,12 @@ void printWholeMainGame(){
         rmsec = timer - msec/1000;
         detik = formattingSeconds(rmsec);
         menit = formattingMinutes(rmsec);
-        printf("timer: %d:%d\n\n", menit, detik);
-        printf("timer: %d\n\n", rmsec);
+        printf("\t\t\ttimer: %d:%d\n\n", menit, detik);
+        printf("\t\t\ttimer: %d\n\n", rmsec);
+        printf("\t\t\t");
         printf("=======================================\n");
         for(i = 0; i < BARIS; i++){
+        	printf("\t\t\t");
         	printf("|| ");
             for(j = 0; j < KOLOM; j++){
 //                if(j == 0){
@@ -114,46 +116,46 @@ void printWholeMainGame(){
                 }
             }
             if(i >= 0 && i < BARIS - 1){
-                printf("\n---------------------------------------");
+                printf("\n\t\t\t---------------------------------------");
             }
             else{
-                printf("\n=======================================\n");
+                printf("\n\t\t\t=======================================\n");
             }
             printf("\n");
         }
 
         // Sleep(1000);
 
-        printf("\nMove You Take:  %d\n", moveCounter);
-        printf("k to quit.\n");
-        printf("Where would you like to move? up/left/right/down: ");
+        printf("\n\t\t\tMove You Take:  %d\n", moveCounter);
+        printf("\t\t\tk to quit.\n");
+        printf("\t\t\tWhere would you like to move? up/left/right/down: ");
         // scanf("%c", &movement);
         movement = getch();
         switch (movement){
         case 'w':
             /* code */
-            printf("\nYou pressed up.");
+            printf("\n\t\t\tYou pressed up.");
             //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'a':
-            printf("\nYou pressed left.");
+            printf("\n\t\t\tYou pressed left.");
             //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 's':
-            printf("\nYou pressed down.");
+            printf("\n\t\t\tYou pressed down.");
             //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'd':
-            printf("\nYou pressed right.");
+            printf("\n\t\t\tYou pressed right.");
             //Sleep(1000);
             moveTo(checkIfAbleToMove(globalX, globalY, movement), movement);
             break;
         case 'k':
             // gameLoop = false;
-            printf("\n\nAre you sure? y/n: ");
+            printf("\n\n\t\t\tAre you sure? y/n: ");
             areYouSure = getch();
             Sleep(500);
             switch(areYouSure){
@@ -161,7 +163,7 @@ void printWholeMainGame(){
             		gameLoop = false;
             		continue;
             	case 'n':
-            		printf("Going back");
+            		printf("\t\t\tGoing back");
             		continue;
 			}
 //            if(areYouSure == 'y' || areYouSure == 'Y'){
@@ -172,14 +174,14 @@ void printWholeMainGame(){
 //            }
 //            break;
         case '/':
-            printf("\ndebug mode.\n\n");
-            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTrigger);
+            printf("\n\t\t\tdebug mode.\n\n");
+            printf("\t\t\tEnter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTrigger);
             debugMode(debugTrigger);
             Sleep(500);
             break;
 
         default:
-            printf("Not a valid input.");
+            printf("\t\t\tNot a valid input.");
             //Sleep(500);
         }
 
@@ -192,6 +194,11 @@ void printWholeMainGame(){
             printLose();
             gameLoop = false;
         }
+        
+        if(moveCounter == 500){
+        	printLose();
+        	gameLoop = false;
+		}
 
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
@@ -218,11 +225,13 @@ void printWholeMainGame(){
 void pressStartOrEscape(){
     system("cls");
     int i, j;
+    printf("\t\t\t");
     printf("=====================================\n");
 
     for(i = 0; i < BARIS; i++){
             for(j = 0; j < KOLOM; j++){
                 if(j == 2 && i == 2){
+                	printf("\t\t\t");
                         printf("========Press Enter To Start========\n");
                 }
             }
@@ -230,7 +239,7 @@ void pressStartOrEscape(){
                 //printf("\n-------------------------------------");
             }
             else{
-                printf("\n=====================================\n");
+                printf("\n\t\t\t=====================================\n");
             }
             printf("\n");
         }
@@ -347,7 +356,9 @@ bool checkIfAbleToMove(int X, int Y, char input){
 void moveTo(bool movement, int move){
     int a, b, temp;
     if(movement == false){
+    	system("COLOR 84");
         printf("\nYou can't move.");
+        system("COLOR 8f");
         Sleep(1000);
     }
     else{
@@ -403,7 +414,9 @@ void moveTo(bool movement, int move){
 
             globalX++;         
         }
-        printf("\nYou've succesfully moved.");
+        system("COLOR 82");
+        printf("\n\t\t\tYou've succesfully moved.");
+        system("COLOR 8f");
         moveCounter++;
     }
 }
@@ -436,9 +449,9 @@ void debugMode(int enableDebug){
         printf("\nTransferred.");
     }
     else if(enableDebug == 2){
-        debugMode(1);
+        //debugMode(1);
         moveCounter = 500;
-        printf("\nCounter maxed out");
+        printf("\n\t\t\tCounter maxed out");
     }
     else if(enableDebug == 3){
         startFunc();
@@ -452,14 +465,18 @@ void debugMode(int enableDebug){
 void askPlayOrMain(){
     int opt;
     system("cls");
+    printf("\t\t\t");
     printf("Do you want to play again?\n");
+    printf("\t\t\t");
     printf("1. Play again\n");
+    printf("\t\t\t");
     printf("2. Go to main menu\n");
     printf("input: "), scanf("%d", &opt);
     switch(opt){
         case 1:
             startFunc();
         case 2:
+        	printf("\t\t\t");
             printf("Bringing you back to main menu in 2 seconds.");
             
             // insert main menu here
@@ -470,6 +487,7 @@ void askPlayOrMain(){
 
 // asking if they're sure to quit
 void areYouSureQuit(){
+	printf("\t\t\t");
     printf("Are you sure? Y/N: ");
     scanf("%c", &areYouSure);
 }
