@@ -93,67 +93,73 @@ void printWholeMainGameUnli(){
         rmsec = timerUnli - msec/1000;
         detik = formattingSeconds(rmsec);
         menit = formattingMinutes(rmsec);
-        printf("timer: %d:%d\n\n", menit, detik);
-        printf("timer: %d\n\n", rmsec);
+        printf("\t\t\ttimer: %d:%d\n\n", menit, detik);
+        printf("\t\t\ttimer: %d\n\n", rmsec);
+        	printf("\t\t\t");
         printf("=======================================\n");
         for(i = 0; i < BARIS; i++){
+        		printf("\t\t\t");
         	printf("|| ");
             for(j = 0; j < KOLOM; j++){
 //                if(j == 0 && globalXUnli != 0 || j == 0 && globalYUnli != 0){
 //                    printf("|| %-5d||", arrayMatrix[i][j]);
 //                }
                 if(j == globalXUnli && i == globalYUnli){
+                		
                 	//printf("  %-5d||", arrayMatrix[i][j]);
                 	printf("       ||");
+                		
 				}
 //				else if(globalXUnli == 0 && globalYUnli == 0 && j == 0 ){
 //					printf("||       ||", arrayMatrix[i][j]);
 				//}
                 else{
+                		
                     printf("  %-5d||", arrayMatrix[i][j]);
                 }
             }
             if(i >= 0 && i < BARIS - 1){
-                printf("\n---------------------------------------");
+                printf("\n\t\t\t--------------------------------------");
             }
             else{
-                printf("\n=======================================\n");
+            	
+                printf("\n\t\t\t=======================================\n");
             }
             printf("\n");
         }
 
         // Sleep(1000);
 
-        printf("\nMove You Take:  %d\n", moveCounterUnli);
-        printf("k to quit.\n");
-        printf("Where would you like to move? up/left/right/down: ");
+        printf("\n\t\t\tMove You Take:  %d\n", moveCounterUnli);
+        printf("\t\t\tk to quit.\n");
+        printf("\t\t\tWhere would you like to move? up/left/right/down: ");
         // scanf("%c", &movement);
         movement = getch();
         switch (movement){
         case 'w':
             /* code */
-            printf("\nYou pressed up.");
+            printf("\n\t\t\tYou pressed up.");
             //Sleep(1000);
             moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 'a':
-            printf("\nYou pressed left.");
+            printf("\n\t\t\tYou pressed left.");
             //Sleep(1000);
             moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 's':
-            printf("\nYou pressed down.");
+            printf("\n\t\t\tYou pressed down.");
             //Sleep(1000);
             moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 'd':
-            printf("\nYou pressed right.");
+            printf("\n\t\t\tYou pressed right.");
             //Sleep(1000);
             moveToUnli(checkIfAbleToMoveUnli(globalXUnli, globalYUnli, movement), movement);
             break;
         case 'k':
             // gameLoop = false;
-            printf("Are you sure? Y/N: ");
+            printf("\n\t\t\tAre you sure? Y/N: ");
             scanf("%c", &areYouSureUnli);
             Sleep(500);
             areYouSureUnli = getch();
@@ -162,7 +168,7 @@ void printWholeMainGameUnli(){
             		gameLoopUnli = false;
             		continue;
             	case 'n':
-            		printf("Going back");
+            		printf("\t\t\t\t\t\tGoing back");
             		continue;
 			}
 //            if(areYouSureUnli == 'y' || areYouSureUnli == 'Y'){
@@ -174,14 +180,14 @@ void printWholeMainGameUnli(){
             break;
 
         case '/':
-            printf("\ndebug mode.\n\n");
-            printf("Enter debug menu: \n\n1. Finish the Game\n2. Maxout Move\n3. Reset\n4. Return to game\n\n"), scanf("%d", &debugTriggerUnli);
+            printf("\n\t\t\tdebug mode.\n\n");
+            printf("\t\t\tEnter debug menu: \n\n\t\t\t1. Finish the Game\n\t\t\t2. Maxout Move\n\t\t\t3. Reset\n\t\t\t4. Return to game\n\n\t\t\t"), scanf("%d", &debugTriggerUnli);
             debugModeUnli(debugTriggerUnli);
             Sleep(500);
             break;
 
         default:
-            printf("Not a valid input.");
+            printf("\t\t\tNot a valid input.");
             //Sleep(500);
         }
 
@@ -194,6 +200,13 @@ void printWholeMainGameUnli(){
             printLose();
             gameLoopUnli = false;
         }
+        
+        if(moveCounterUnli == INT_MAX){
+        	printf("\t\t\tAuto lose...");
+        	Sleep(2000);
+        	printLose();
+        	gameLoopUnli = false;
+		}
 
         for(i = 0; i < KOLOM; i++){
             for(j = 0; j < BARIS; j++){
@@ -220,19 +233,19 @@ void printWholeMainGameUnli(){
 void pressStartOrEscapeUnli(){
     system("cls");
     int i, j;
-    printf("=====================================\n");
+    printf("\n\n\t\t\t=====================================\n");
 
     for(i = 0; i < BARIS; i++){
             for(j = 0; j < KOLOM; j++){
                 if(j == 2 && i == 2){
-                        printf("========Press Enter To Start========\n");
+                        printf("\t\t\t========Press Enter To Start========\n");
                 }
             }
             if(i >= 0 && i < BARIS - 1){
                 //printf("\n-------------------------------------");
             }
             else{
-                printf("\n=====================================\n");
+                printf("\n\t\t\t=====================================\n");
             }
             printf("\n");
         }
@@ -349,7 +362,9 @@ bool checkIfAbleToMoveUnli(int X, int Y, char input){
 void moveToUnli(bool movement, int move){
     int a, b, temp;
     if(movement == false){
-        printf("\nYou can't move.");
+    	system("COLOR 84");
+        printf("\n\t\t\tYou can't move.");
+        system("COLOR 8f");
         Sleep(1000);
     }
     else{
@@ -405,7 +420,9 @@ void moveToUnli(bool movement, int move){
 
             globalXUnli++;         
         }
-        printf("\nYou've succesfully moved.");
+        system("COLOR 82");
+        printf("\n\t\t\tYou've succesfully moved.");
+        system("COLOR 8f");
         moveCounterUnli++;
     }
 }
@@ -438,15 +455,15 @@ void debugModeUnli(int enableDebug){
         printf("\nTransferred.");
     }
     else if(enableDebug == 2){
-        debugModeUnli(1);
+        //debugModeUnli(1);
         moveCounterUnli = INT_MAX;
-        printf("\nCounter maxed out");
+        printf("\n\t\t\tCounter maxed out");
     }
     else if(enableDebug == 3){
         startFuncUnli();
     }
     else if(enableDebug == 4){
-        printf("Ok...");
+        printf("\t\t\tOk...");
     }
 }
 
@@ -454,15 +471,19 @@ void debugModeUnli(int enableDebug){
 void askPlayOrMainUnli(){
     int opt;
     system("cls");
-    printf("Do you want to play again?\n");
-    printf("1. Play again\n");
-    printf("2. Go to main menu\n");
-    printf("input: "), scanf("%d", &opt);
+    printf("\t\t\t");
+    printf("=======================================================\n");
+    printf("\t\t\t                Do you want to play again?        \n");printf("\t\t\t");
+    printf("=======================================================\n");
+    printf("\t\t\t1. Play again\n");
+    printf("\t\t\t2. Go to main menu\n");printf("\t\t\t");
+    printf("=======================================================\n");
+    printf("\t\t\tinput: "), scanf("%d", &opt);
     switch(opt){
         case 1:
             startFuncUnli();
         case 2:
-            printf("Bringing you back to main menu in 2 seconds.");
+            printf("\t\t\tBringing you back to main menu in 2 seconds.");
             // insert main menu here
             Sleep(2000);
             main();
@@ -471,6 +492,6 @@ void askPlayOrMainUnli(){
 
 // asking if they're sure to quit
 void areYouSureQuitUnli(){
-    printf("Are you sure? Y/N: ");
+    printf("\t\t\tAre you sure? Y/N: ");
     scanf("%c", &areYouSureUnli);
 }
