@@ -1,5 +1,6 @@
 #include "selfHeader.h"
 
+// select modes
 void printOption(){
 	int choice;
 	system("cls");

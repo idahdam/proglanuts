@@ -84,7 +84,8 @@ void printWholeMainGame(){
     debugTrigger = 0;
     stopTrigger = 0, moveCounter = 0;
     pressStartOrEscape();
-
+	
+	// game loop
     while(gameLoop){
         TIMER:
         system("cls");
@@ -101,16 +102,9 @@ void printWholeMainGame(){
         	printf("\t\t\t");
         	printf("|| ");
             for(j = 0; j < KOLOM; j++){
-//                if(j == 0){
-//                    printf("|| %-5d||", arrayMatrix[i][j]);
-//                }
                 if(j == globalX && i == globalY){
-                	//printf("  %-5d||", arrayMatrix[i][j]);
                 	printf("       ||");
 				}
-//                else{
-//                    printf("  %-5d||", arrayMatrix[i][j]);
-//                }
                 else{
                     printf("  %-5d||", arrayMatrix[i][j]);
                 }
@@ -124,12 +118,9 @@ void printWholeMainGame(){
             printf("\n");
         }
 
-        // Sleep(1000);
-
         printf("\n\t\t\tMove You Take:  %d\n", moveCounter);
         printf("\t\t\tk to quit.\n");
         printf("\t\t\tWhere would you like to move? up/left/right/down: ");
-        // scanf("%c", &movement);
         movement = getch();
         switch (movement){
         case 'w':
@@ -166,13 +157,6 @@ void printWholeMainGame(){
             		printf("\t\t\tGoing back");
             		continue;
 			}
-//            if(areYouSure == 'y' || areYouSure == 'Y'){
-//                gameLoop = false;
-//            }
-//            else{
-//                printf("going back");
-//            }
-//            break;
         case '/':
             printf("\n\t\t\tdebug mode.\n\n");
             printf("\t\t\tEnter debug menu: \n\n\t\t\t1. Finish the Game\n\t\t\t2. Maxout Move\n\t\t\t3. Reset\n\t\t\t4. Return to game\n\n\t\t\t"), scanf("%d", &debugTrigger);

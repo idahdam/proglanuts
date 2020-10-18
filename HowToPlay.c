@@ -1,5 +1,6 @@
 #include "selfHeader.h"
 
+// how to play
 void howToPlay(){
     system("cls");
     printf("\t\t\t");

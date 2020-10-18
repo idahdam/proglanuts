@@ -2,6 +2,7 @@
 
 int number = 1;
 
+// print for win
 void printWin(){
     int n=0;
     int a=0;
@@ -124,6 +125,7 @@ void printWin(){
     }
 }
 
+// print for lose
 void printLose(){
     int n=0;
     int a=0;
@@ -252,6 +254,7 @@ void printLose(){
     }
 }
 
+// masukkan inisial 
 void enterScore(int score, int minutes, int seconds){
     FILE *fp;
     char nama[3];
@@ -266,6 +269,7 @@ void enterScore(int score, int minutes, int seconds){
 	fclose(fp);
 }
 
+// print scoreboard
 void showScore(){
     FILE *fp;
     char str[MAXCHAR];

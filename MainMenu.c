@@ -1,5 +1,6 @@
 #include "selfHeader.h"
 
+// start screen
 void intro(){
  int n=0;
  int a=0;

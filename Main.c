@@ -1,5 +1,6 @@
 #include "selfHeader.h"
 
+// main function 
 int main(int argc, char const *argv[]){
     /* code */
     int opsi, exitNum;
@@ -9,6 +10,7 @@ int main(int argc, char const *argv[]){
     system("cls");
     mainMenu();
     printf("input: "), scanf("%d", &opsi);
+    // main menu options
     switch(opsi){
     	case 1:
     		//startFunc();
